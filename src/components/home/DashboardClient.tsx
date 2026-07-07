@@ -4,6 +4,8 @@ import { PersonaSelector } from '@/components/home/PersonaSelector';
 import { motion, AnimatePresence } from 'framer-motion';
 import { KnowledgeGraph } from '@/components/canvas/KnowledgeGraph';
 import { ErrorBoundary } from '@/components/canvas/ErrorBoundary';
+import { Canvas } from '@react-three/fiber';
+import { Stars } from '@react-three/drei';
 import { MindChat } from '@/components/ai/MindChat';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
@@ -146,8 +148,15 @@ export const DashboardClient = ({ repos }: { repos: any[] }) => {
   return (
     <AnimatePresence mode="wait">
       {!persona ? (
-        <motion.section key="landing" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="flex min-h-screen flex-col items-center justify-center space-y-12 px-4 py-12" >
-          <div className="text-center max-w-4xl">
+        <motion.section key="landing" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="flex min-h-screen flex-col items-center justify-center space-y-12 px-4 py-12 relative overflow-hidden" >
+          {/* Neural Space Background */}
+          <div className="absolute inset-0 z-0 opacity-60 pointer-events-none">
+            <Canvas camera={{ position: [0, 0, 8], fov: 60 }}>
+              <Stars radius={50} depth={50} count={3000} factor={4} saturation={0} fade speed={1.5} />
+            </Canvas>
+          </div>
+          
+          <div className="text-center max-w-4xl z-10 relative pointer-events-auto">
             <motion.h1 initial={{ y: 20 }} animate={{ y: 0 }} className="text-5xl font-extrabold tracking-tighter md:text-7xl bg-gradient-to-b from-white to-gray-500 bg-clip-text text-transparent mb-6">
               Shivansh Sharma
             </motion.h1>
@@ -166,7 +175,7 @@ export const DashboardClient = ({ repos }: { repos: any[] }) => {
               </a>
             </motion.div>
           </div>
-          <div className="w-full max-w-4xl text-center">
+          <div className="w-full max-w-4xl text-center z-10 relative pointer-events-auto">
             <h2 className="mb-8 text-sm uppercase tracking-[0.3em] text-gray-500">Who are you?</h2>
             <PersonaSelector />
           </div>
