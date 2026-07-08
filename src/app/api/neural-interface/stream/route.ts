@@ -1,7 +1,5 @@
 import { NextResponse } from 'next/server';
-import { KNOWLEDGE_BASE } from '../../../../../knowledge-base.js';
-
-export const runtime = 'edge';
+import { KNOWLEDGE_BASE } from '../../../../lib/knowledge-base';
 
 const MODEL = process.env.GEMINI_MODEL || 'gemini-2.5-flash';
 const STREAM_URL = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:streamGenerateContent?alt=sse`;
