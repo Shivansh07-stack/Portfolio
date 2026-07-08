@@ -59,7 +59,7 @@ export const MindChat = () => {
 
     try {
       const res = await fetch(
-        "http://localhost:3001/api/neural-interface/stream",
+        "/api/neural-interface/stream",
         {
           method: "POST",
           headers: {
@@ -74,7 +74,6 @@ export const MindChat = () => {
           }),
         }
       );
-
       if (!res.ok) {
         throw new Error("Network error");
       }
