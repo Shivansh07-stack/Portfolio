@@ -17,19 +17,34 @@ const nodes = [
   // Secondary Tool Nodes
   { id: 'pytorch', label: 'PyTorch', pos: [4, 3.5, -3] as [number, number, number], color: '#8b5cf6', size: 0.25, count: 0 },
   { id: 'xgboost', label: 'XGBoost', pos: [4.5, 1, -1] as [number, number, number], color: '#8b5cf6', size: 0.25, count: 0 },
+  { id: 'tensorflow', label: 'TensorFlow', pos: [2.5, 4.5, -1.5] as [number, number, number], color: '#8b5cf6', size: 0.25, count: 0 },
+  { id: 'opencv', label: 'OpenCV', pos: [5, 2.5, -0.5] as [number, number, number], color: '#8b5cf6', size: 0.25, count: 0 },
+
   { id: 'langchain', label: 'LangChain', pos: [1.5, -4.5, 3] as [number, number, number], color: '#f59e0b', size: 0.25, count: 0 },
   { id: 'faiss', label: 'FAISS', pos: [-1.5, -4, 2.5] as [number, number, number], color: '#f59e0b', size: 0.25, count: 0 },
+
   { id: 'sql', label: 'SQL', pos: [-4.5, 3.5, 3] as [number, number, number], color: '#10b981', size: 0.25, count: 0 },
   { id: 'pandas', label: 'Pandas', pos: [-4, 1, 3.5] as [number, number, number], color: '#10b981', size: 0.25, count: 0 },
+  { id: 'hadoop', label: 'Hadoop', pos: [-2.5, 4.5, 1] as [number, number, number], color: '#10b981', size: 0.25, count: 0 },
+  { id: 'streamlit', label: 'Streamlit', pos: [-4.5, -1, 3] as [number, number, number], color: '#10b981', size: 0.25, count: 0 },
+
+  { id: 'fastapi', label: 'FastAPI', pos: [-3.5, -3.5, -2.5] as [number, number, number], color: '#ec4899', size: 0.25, count: 0 },
+  
+  { id: 'python', label: 'Python', pos: [1, 5, 0] as [number, number, number], color: '#3b82f6', size: 0.35, count: 0 },
 ];
 
 const connections = [
   // Primary connections
   ['root', 'ml'], ['root', 'data'], ['root', 'ai'], ['root', 'eng'], ['ml', 'ai'], ['data', 'eng'],
+  
   // Secondary connections
-  ['ml', 'pytorch'], ['ml', 'xgboost'],
+  ['ml', 'pytorch'], ['ml', 'xgboost'], ['ml', 'tensorflow'], ['ml', 'opencv'],
   ['ai', 'langchain'], ['ai', 'faiss'],
-  ['data', 'sql'], ['data', 'pandas']
+  ['data', 'sql'], ['data', 'pandas'], ['data', 'hadoop'], ['data', 'streamlit'],
+  ['eng', 'fastapi'],
+  
+  // Cross-cutting connections
+  ['root', 'python'], ['ml', 'python'], ['data', 'python']
 ];
 
 const SynapseLine = ({ start, end }: { start: [number, number, number], end: [number, number, number] }) => {
