@@ -12,36 +12,16 @@ export const MindChat = () => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const saved = sessionStorage.getItem("mindChatHistory");
-
-    if (saved) {
-      try {
-        setMessages(JSON.parse(saved));
-      } catch {
-        setMessages([
-          {
-            role: "ai",
-            text: "Ask me anything about my experience, projects, or how I solved specific data challenges.",
-          },
-        ]);
-      }
-    } else {
-      setMessages([
-        {
-          role: "ai",
-          text: "Ask me anything about my experience, projects, or how I solved specific data challenges.",
-        },
-      ]);
-    }
-
+    setMessages([
+      {
+        role: "ai",
+        text: "Ask me anything about my experience, projects, or how I solved specific data challenges.",
+      },
+    ]);
     setIsLoaded(true);
   }, []);
 
   useEffect(() => {
-    if (isLoaded) {
-      sessionStorage.setItem("mindChatHistory", JSON.stringify(messages));
-    }
-
     if (scrollContainerRef.current) {
       scrollContainerRef.current.scrollTop =
         scrollContainerRef.current.scrollHeight;
